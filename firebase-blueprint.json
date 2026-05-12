@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information and learning progress",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "age": { "type": "number" },
+        "ageGroup": { "type": "string", "enum": ["kids", "teenagers", "adults"] },
+        "englishLevel": { "type": "string", "enum": ["beginner", "intermediate", "advanced"] },
+        "goals": { "type": "array", "items": { "type": "string" } },
+        "personaPreference": { "type": "string" },
+        "xp": { "type": "number" },
+        "level": { "type": "number" },
+        "streak": { "type": "number" },
+        "lastActive": { "type": "string", "format": "date-time" },
+        "onboardingCompleted": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "name", "email", "ageGroup"]
+    },
+    "Session": {
+      "title": "Speaking Session",
+      "description": "Data from a voice conversation session",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "duration": { "type": "number" },
+        "topic": { "type": "string" },
+        "persona": { "type": "string" },
+        "feedback": {
+          "type": "object",
+          "properties": {
+            "pronunciation": { "type": "number" },
+            "grammar": { "type": "number" },
+            "fluency": { "type": "number" },
+            "vocabulary": { "type": "number" },
+            "confidence": { "type": "number" },
+            "notes": { "type": "string" },
+            "improvements": { "type": "array", "items": { "type": "string" } },
+            "newWords": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "transcript": { "type": "array", "items": { "type": "object" } }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile data"
+    },
+    "/users/{userId}/sessions/{sessionId}": {
+      "schema": "Session",
+      "description": "History of speaking sessions"
+    }
+  }
+}

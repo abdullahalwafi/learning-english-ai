@@ -1,0 +1,6 @@
+{
+  "name": "Lumina: AI English Partner",
+  "description": "Your premium AI speaking partner. Level up your English through natural, emotionally-intelligent voice conversations.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": []
+}
